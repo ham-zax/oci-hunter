@@ -1,0 +1,17 @@
+[Unit]
+Description=OCI Always Free Instance Hunter Daemon
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/oci-hunter
+ExecStart=/opt/oci-venv/bin/python -u /opt/oci-hunter/oci_hunter.py
+Restart=always
+RestartSec=15
+StandardOutput=append:/var/log/oci_hunter.log
+StandardError=append:/var/log/oci_hunter.log
+
+[Install]
+WantedBy=multi-user.target
